@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+    --card: 0 0% 99%;
+    --card-foreground: 0 0% 9%;
+    --popover: 0 0% 99%;
+    --popover-foreground: 0 0% 9%;
+    --primary: 263 70% 56%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 263 70% 56%;
+    --accent-foreground: 0 0% 100%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 263 70% 56%;
+    --radius: 0.625rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @media (prefers-reduced-motion: no-preference) {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background-color: #FAFAFA;
+    color: #1A1A1A;
+    font-family: var(--font-body), sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-body), sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: rgba(124, 58, 237, 0.15);
+  }
+}
+
+@layer components {
+  .surface {
+    @apply rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-300;
+  }
+
+  .surface:hover {
+    @apply shadow-md border-slate-300;
+  }
+
+  .surface-strong {
+    @apply rounded-xl border border-slate-200 bg-white shadow-md;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#7C3AED];
+  }
+
+  .btn-brand {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-[#7C3AED] px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-[#6D28D9] hover:shadow-md hover:shadow-violet-200;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border-2 border-[#7C3AED] px-6 py-3 text-sm font-semibold text-[#7C3AED] transition-all hover:bg-[#7C3AED] hover:text-white;
+  }
+
+  .hide-scroll-bar-custom::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hero-grid {
+    background-image:
+      linear-gradient(to right, rgba(124, 58, 237, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(124, 58, 237, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-[#7C3AED] to-[#A78BFA] bg-clip-text text-transparent;
+  }
+
+  .icon-box {
+    @apply w-12 h-12 rounded-xl bg-violet-50 border border-violet-100 flex items-center justify-center shrink-0;
+  }
+
+  .section-light {
+    @apply bg-white;
+  }
+
+  .section-muted {
+    @apply bg-[#F5F5F5];
+  }
+}
+
+
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: floatSlow 8s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 5s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(124,58,237,0.06) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+
+@layer utilities {
+  .prose-touchpointe {
+    @apply max-w-none text-base leading-7 text-slate-600;
+  }
+
+  .prose-touchpointe h2 {
+    @apply mt-10 text-2xl font-semibold text-slate-900;
+  }
+
+  .prose-touchpointe h3 {
+    @apply mt-8 text-xl font-semibold text-slate-900;
+  }
+
+  .prose-touchpointe p {
+    @apply mt-4 text-slate-600;
+  }
+
+  .prose-touchpointe ul {
+    @apply mt-4 list-disc space-y-2 pl-6 text-slate-600;
+  }
+
+  .prose-touchpointe strong {
+    @apply text-slate-900 font-semibold;
+  }
+}
