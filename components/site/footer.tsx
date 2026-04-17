@@ -19,7 +19,7 @@ export function Footer() {
         <div className="space-y-4 max-w-xs">
           <Link href="/" className="flex items-center gap-2.5">
             <div className="relative h-9 w-9 overflow-hidden rounded-full border border-white/20">
-              <Image src="/brand/logo.jpeg" alt="Touchpointe" width={36} height={36} className="object-cover" />
+              <Image src="/brand/logo.jpeg" alt="Touchpointe" width={36} height={36} priority className="object-cover" />
             </div>
             <span className="font-bold text-white">Touchpointe Digital</span>
           </Link>

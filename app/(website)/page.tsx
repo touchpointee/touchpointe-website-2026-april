@@ -368,6 +368,7 @@ export default async function HomePage() {
                           src={st.image} 
                           alt={st.title} 
                           fill
+                          priority
                           className="object-cover hover:scale-105 transition-transform duration-700" 
                         />
                       ) : (

@@ -52,9 +52,9 @@ function ApplyModal({ job, onClose }: ApplyModalProps) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+    <div className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in slide-in-from-bottom-4 duration-300">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 shrink-0">
           <div>
             <p className="text-xs uppercase tracking-widest text-[#7C3AED] font-bold">Apply for</p>
             <h3 className="font-bold text-slate-900 text-lg leading-tight">{job.title}</h3>
@@ -64,56 +64,60 @@ function ApplyModal({ job, onClose }: ApplyModalProps) {
           </button>
         </div>
 
-        {status === "success" ? (
-          <div className="p-10 text-center">
-            <div className="w-14 h-14 rounded-full bg-violet-100 flex items-center justify-center mx-auto mb-4">
-              <svg className="w-7 h-7 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+        <div className="overflow-y-auto flex-1">
+          {status === "success" ? (
+            <div className="p-10 text-center">
+              <div className="w-14 h-14 rounded-full bg-violet-100 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-7 h-7 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+              </div>
+              <h4 className="text-xl font-bold text-slate-900 mb-2">Application submitted!</h4>
+              <p className="text-slate-500 text-sm">Thank you, {form.name}. We&apos;ll review your application and be in touch.</p>
+              <button onClick={onClose} className="mt-6 px-6 py-2.5 bg-[#7C3AED] text-white text-sm font-semibold rounded-full hover:bg-[#6D28D9] transition-colors">Close</button>
             </div>
-            <h4 className="text-xl font-bold text-slate-900 mb-2">Application submitted!</h4>
-            <p className="text-slate-500 text-sm">Thank you, {form.name}. We&apos;ll review your application and be in touch.</p>
-            <button onClick={onClose} className="mt-6 px-6 py-2.5 bg-[#7C3AED] text-white text-sm font-semibold rounded-full hover:bg-[#6D28D9] transition-colors">Close</button>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="p-6 grid gap-4">
-            <div className="grid grid-cols-2 gap-4">
+          ) : (
+            <form onSubmit={handleSubmit} className="p-6 grid gap-4">
+              <div className="grid grid-cols-2 gap-4">
+                <label className="grid gap-1.5 text-sm font-medium text-slate-900">
+                  Full Name *
+                  <Input value={form.name} onChange={(e) => set("name", e.target.value)} placeholder="Your name" required />
+                </label>
+                <label className="grid gap-1.5 text-sm font-medium text-slate-900">
+                  Email *
+                  <Input type="email" value={form.email} onChange={(e) => set("email", e.target.value)} placeholder="you@example.com" required />
+                </label>
+              </div>
+
               <label className="grid gap-1.5 text-sm font-medium text-slate-900">
-                Full Name *
-                <Input value={form.name} onChange={(e) => set("name", e.target.value)} placeholder="Your name" required />
+                Phone
+                <Input value={form.phone} onChange={(e) => set("phone", e.target.value)} placeholder="+1 (555) 000-0000" />
               </label>
+
               <label className="grid gap-1.5 text-sm font-medium text-slate-900">
-                Email *
-                <Input type="email" value={form.email} onChange={(e) => set("email", e.target.value)} placeholder="you@example.com" required />
+                Resume / CV (upload to get a link)
+                <ImageUploadField
+                   value={form.resumeUrl}
+                   onChange={(url) => set("resumeUrl", url)}
+                   placeholder="Or paste a resume link (Google Drive, etc.)"
+                   hideUrlInput={true}
+                   accept=".pdf,.doc,.docx,image/*"
+                 />
               </label>
-            </div>
 
-            <label className="grid gap-1.5 text-sm font-medium text-slate-900">
-              Phone
-              <Input value={form.phone} onChange={(e) => set("phone", e.target.value)} placeholder="+1 (555) 000-0000" />
-            </label>
+              <label className="grid gap-1.5 text-sm font-medium text-slate-900">
+                Cover Letter
+                <Textarea value={form.coverLetter} onChange={(e) => set("coverLetter", e.target.value)} placeholder="Tell us why you're a great fit…" />
+              </label>
 
-            <label className="grid gap-1.5 text-sm font-medium text-slate-900">
-              Resume / CV (upload to get a link)
-              <ImageUploadField
-                value={form.resumeUrl}
-                onChange={(url) => set("resumeUrl", url)}
-                placeholder="Or paste a resume link (Google Drive, etc.)"
-              />
-            </label>
+              {status === "error" && <p className="text-xs text-rose-500 font-medium">{errorMsg}</p>}
 
-            <label className="grid gap-1.5 text-sm font-medium text-slate-900">
-              Cover Letter
-              <Textarea value={form.coverLetter} onChange={(e) => set("coverLetter", e.target.value)} placeholder="Tell us why you're a great fit…" />
-            </label>
-
-            {status === "error" && <p className="text-xs text-rose-500 font-medium">{errorMsg}</p>}
-
-            <Button type="submit" disabled={status === "sending"} className="mt-1">
-              {status === "sending" ? (
-                <span className="flex items-center gap-2"><Loader2 className="w-4 h-4 animate-spin" /> Submitting…</span>
-              ) : "Submit Application"}
-            </Button>
-          </form>
-        )}
+              <Button type="submit" disabled={status === "sending"} className="mt-1">
+                {status === "sending" ? (
+                  <span className="flex items-center gap-2"><Loader2 className="w-4 h-4 animate-spin" /> Submitting…</span>
+                ) : "Submit Application"}
+              </Button>
+            </form>
+          )}
+        </div>
       </div>
     </div>
   );

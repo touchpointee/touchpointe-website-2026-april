@@ -40,7 +40,7 @@ export function Navbar({
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group shrink-0">
           <div className="relative h-7 w-7 sm:h-8 sm:w-8 overflow-hidden rounded-md group-hover:scale-105 transition-transform">
-            <Image src="/brand/logo.jpeg" alt={siteConfig.name} fill className="object-cover" />
+            <Image src="/brand/logo.jpeg" alt={siteConfig.name} fill priority className="object-cover" />
           </div>
           <span className="font-semibold text-lg lg:text-[22px] tracking-tight text-slate-900 flex items-center">
             touchpointe<span className="text-[#7C3AED]">.</span>

@@ -11,11 +11,17 @@ type ImageUploadFieldProps = {
   value: string;
   onChange: (url: string) => void;
   placeholder?: string;
+  hideUrlInput?: boolean;
+  accept?: string;
 };
 
 type UploadState = "idle" | "uploading" | "error";
 
-export function ImageUploadField({ value, onChange, placeholder }: ImageUploadFieldProps) {
+const isImage = (url: string) => {
+  return /\.(jpg|jpeg|png|webp|gif|avif|svg)$/i.test(url);
+};
+
+export function ImageUploadField({ value, onChange, placeholder, hideUrlInput, accept }: ImageUploadFieldProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploadState, setUploadState] = useState<UploadState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -55,7 +61,7 @@ export function ImageUploadField({ value, onChange, placeholder }: ImageUploadFi
     e.preventDefault();
     setIsDragging(false);
     const file = e.dataTransfer.files?.[0];
-    if (file && file.type.startsWith("image/")) uploadFile(file);
+    if (file) uploadFile(file);
   }
 
   return (
@@ -80,11 +86,20 @@ export function ImageUploadField({ value, onChange, placeholder }: ImageUploadFi
         {value ? (
           /* Preview */
           <div className="relative group">
-            <img
-              src={value}
-              alt="Cover preview"
-              className="w-full h-48 object-cover"
-            />
+            {isImage(value) ? (
+              <img
+                src={value}
+                alt="Upload preview"
+                className="w-full h-48 object-cover"
+              />
+            ) : (
+              <div className="w-full h-48 bg-slate-100 flex flex-col items-center justify-center gap-2">
+                <UploadCloud className="w-10 h-10 text-slate-300" />
+                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest px-4 text-center truncate w-full">
+                  {value.split("/").pop()}
+                </p>
+              </div>
+            )}
             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
               <span
                 onClick={() => fileInputRef.current?.click()}
@@ -128,21 +143,22 @@ export function ImageUploadField({ value, onChange, placeholder }: ImageUploadFi
         <p className="text-xs text-rose-500 font-medium">{errorMsg}</p>
       )}
 
-      {/* Manual URL input */}
-      <div className="flex items-center gap-2">
-        <Link2 className="w-4 h-4 text-slate-400 shrink-0" />
-        <Input
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder || "Or paste an image URL directly"}
-          className="text-xs"
-        />
-      </div>
+      {!hideUrlInput && (
+        <div className="flex items-center gap-2">
+          <Link2 className="w-4 h-4 text-slate-400 shrink-0" />
+          <Input
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            placeholder={placeholder || "Or paste an image URL directly"}
+            className="text-xs"
+          />
+        </div>
+      )}
 
       <input
         ref={fileInputRef}
         type="file"
-        accept="image/*"
+        accept={accept || "image/*"}
         className="hidden"
         onChange={handleFileChange}
       />

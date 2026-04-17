@@ -17,7 +17,7 @@ export default async function WebsiteLayout({ children }: WebsiteLayoutProps) {
   return (
     <div className="relative overflow-hidden bg-[#FAFAFA]">
       <Navbar insights={insights} caseStudies={caseStudies} />
-      <main className="relative z-10">{children}</main>
+      <main className="relative">{children}</main>
       <Footer />
     </div>
   );
