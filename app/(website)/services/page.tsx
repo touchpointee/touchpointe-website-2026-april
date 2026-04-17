@@ -319,7 +319,7 @@ export default function ServicesPage() {
                   <div className="w-8 h-8 rounded-full bg-violet-50 text-[#7C3AED] flex items-center justify-center shrink-0 border border-violet-100 mt-0.5"><CheckCircle2 className="w-4 h-4"/></div>
                   <div>
                     <h4 className="text-sm font-bold text-slate-900">In-house Product Builders</h4>
-                    <p className="text-sm text-slate-500 mt-1">We don't ship out to third-parties. Direct collaboration and top-tier code quality.</p>
+                    <p className="text-sm text-slate-500 mt-1">We don&apos;t ship out to third-parties. Direct collaboration and top-tier code quality.</p>
                   </div>
                 </li>
                 <li className="flex gap-4 items-start">

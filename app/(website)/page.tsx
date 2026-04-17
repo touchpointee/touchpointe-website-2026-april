@@ -362,9 +362,14 @@ export default async function HomePage() {
               return (
                 <div key={idx} className={`grid lg:grid-cols-2 gap-12 items-center ${isOdd ? "lg:[&>div:first-child]:order-last" : ""}`}>
                   <ScrollReveal variant={isOdd ? "right" : "left"} amount={0.2}>
-                    <div className="rounded-2xl border border-slate-200 bg-[#FAFAFA] aspect-video flex flex-col items-center justify-center overflow-hidden shadow-md">
+                    <div className="relative rounded-2xl border border-slate-200 bg-[#FAFAFA] aspect-video flex flex-col items-center justify-center overflow-hidden shadow-md">
                       {st.image ? (
-                        <img src={st.image} alt={st.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                        <Image 
+                          src={st.image} 
+                          alt={st.title} 
+                          fill
+                          className="object-cover hover:scale-105 transition-transform duration-700" 
+                        />
                       ) : (
                         <Globe className="w-16 h-16 text-slate-200" />
                       )}

@@ -70,7 +70,7 @@ function ApplyModal({ job, onClose }: ApplyModalProps) {
               <svg className="w-7 h-7 text-[#7C3AED]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
             </div>
             <h4 className="text-xl font-bold text-slate-900 mb-2">Application submitted!</h4>
-            <p className="text-slate-500 text-sm">Thank you, {form.name}. We'll review your application and be in touch.</p>
+            <p className="text-slate-500 text-sm">Thank you, {form.name}. We&apos;ll review your application and be in touch.</p>
             <button onClick={onClose} className="mt-6 px-6 py-2.5 bg-[#7C3AED] text-white text-sm font-semibold rounded-full hover:bg-[#6D28D9] transition-colors">Close</button>
           </div>
         ) : (
