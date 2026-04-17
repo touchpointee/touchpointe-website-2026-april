@@ -25,6 +25,11 @@ export const siteConfig = {
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
+  icons: {
+    icon: "/brand/logo.jpeg",
+    shortcut: "/brand/logo.jpeg",
+    apple: "/brand/logo.jpeg",
+  },
   title: {
     default: `${siteConfig.name} | Digital Systems That Convert`,
     template: `%s | ${siteConfig.name}`
