@@ -5,11 +5,11 @@ export const siteConfig = {
   description:
     "Touchpointe designs high-performance digital experiences, product ecosystems, and growth-ready websites for modern brands.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-  adminEmail: process.env.ADMIN_EMAIL || "admin@touchpointe.com",
+  adminEmail: process.env.ADMIN_EMAIL || "contact@touchpointe.digital",
   links: {
-    linkedin: "https://www.linkedin.com",
-    instagram: "https://www.instagram.com",
-    x: "https://x.com",
+    linkedin: process.env.NEXT_PUBLIC_SOCIAL_LINKEDIN || "https://www.linkedin.com/company/touchpointe-digital/",
+    facebook: process.env.NEXT_PUBLIC_SOCIAL_FACEBOOK || "https://www.facebook.com/share/1Ck9L78Lmq/",
+    instagram: process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM || "https://www.instagram.com/touchpointe_digital",
     whatsapp: `https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "+917558099003").replace(/\D/g, "")}?text=${encodeURIComponent(process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE || "Hello, I'm interested in your services.")}`
   },
   nav: [

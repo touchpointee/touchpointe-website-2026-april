@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Linkedin, Twitter, Instagram } from "lucide-react";
+import { Linkedin, Facebook, Instagram } from "lucide-react";
 
 import { siteConfig } from "@/lib/site";
 
@@ -31,9 +31,9 @@ export function Footer() {
               className="w-9 h-9 flex items-center justify-center rounded-lg border border-white/10 text-slate-400 hover:bg-[#7C3AED] hover:text-white hover:border-[#7C3AED] transition-all">
               <Linkedin className="w-4 h-4" />
             </a>
-            <a href={siteConfig.links.x} target="_blank" rel="noreferrer noopener" aria-label="Touchpointe on X (Twitter)"
+            <a href={siteConfig.links.facebook} target="_blank" rel="noreferrer noopener" aria-label="Touchpointe on Facebook"
               className="w-9 h-9 flex items-center justify-center rounded-lg border border-white/10 text-slate-400 hover:bg-[#7C3AED] hover:text-white hover:border-[#7C3AED] transition-all">
-              <Twitter className="w-4 h-4" />
+              <Facebook className="w-4 h-4" />
             </a>
             <a href={siteConfig.links.instagram} target="_blank" rel="noreferrer noopener" aria-label="Touchpointe on Instagram"
               className="w-9 h-9 flex items-center justify-center rounded-lg border border-white/10 text-slate-400 hover:bg-[#7C3AED] hover:text-white hover:border-[#7C3AED] transition-all">
