@@ -9,6 +9,9 @@ import { WhatsAppButton } from "@/components/site/whatsapp-button";
 
 import "./globals.css";
 
+const HATTIE_API_URL = "https://hattie.touchpointe.digital";
+const HATTIE_TENANT_ID = "ebba062f-53df-4562-8438-9a04c26e3871";
+
 const siteFont = Poppins({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
@@ -80,6 +83,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <head>
         <meta name="theme-color" content="#7C3AED" />
+        <link rel="stylesheet" href={`${HATTIE_API_URL}/assets/index.css`} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
@@ -101,6 +105,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
         <Providers>{children}</Providers>
         <WhatsAppButton />
+        <Script id="hattie-ai-config" strategy="beforeInteractive">
+          {`window.HattieAI={tenantId:"${HATTIE_TENANT_ID}",apiUrl:"${HATTIE_API_URL}"};`}
+        </Script>
+        <Script
+          src={`${HATTIE_API_URL}/assets/index.js`}
+          type="module"
+          strategy="afterInteractive"
+        />
         <GTMScript />
         <GA4Script />
       </body>
