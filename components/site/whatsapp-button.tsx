@@ -33,7 +33,7 @@ export function WhatsAppButton() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+    <div className="fixed bottom-6 left-6 z-50 flex flex-col items-start gap-2">
       {/* Tooltip bubble */}
       {showTooltip && !dismissed && (
         <div className="relative bg-white rounded-2xl shadow-xl border border-slate-100 px-4 py-3 max-w-[220px] animate-in fade-in slide-in-from-bottom-2 duration-300">
@@ -49,7 +49,7 @@ export function WhatsAppButton() {
           </p>
           <p className="text-[11px] text-slate-500 mt-0.5">We reply within minutes!</p>
           {/* Arrow */}
-          <div className="absolute -bottom-2 right-5 w-4 h-2 overflow-hidden">
+          <div className="absolute -bottom-2 left-5 w-4 h-2 overflow-hidden">
             <div className="w-3 h-3 bg-white border-r border-b border-slate-100 rotate-45 translate-y-[-6px] translate-x-[2px]" />
           </div>
         </div>
